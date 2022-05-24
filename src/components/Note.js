@@ -1,14 +1,14 @@
 import React from "react";
 import "../styles/note.css";
 
-const Note = () => {
+const Note = ({ id, text, date }) => {
   return (
     <div className="note">
-      <h1>Title</h1>
-      <div>Text</div>
+      <h1>Note {id}</h1>
+      <div>{text}</div>
 
       <div>
-        <div>Date</div>
+        <div>{date}</div>
         <button>Edit</button>
         <button>Delete</button>
         <button>Favs</button>

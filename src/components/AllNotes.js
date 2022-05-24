@@ -1,19 +1,18 @@
 import React from "react";
 import Note from "./Note";
 import "../styles/note.css";
+import AddNote from "../components/AddNote";
 
-const allNotes = () => {
+const allNotes = ({ notes, handleNewNoteText }) => {
   return (
     <div className="allNotesList">
-      <Note />
-      <Note />
-      <Note />
-      <Note />
-      <Note />
-      <Note />
-      <Note />
-      <Note />
-    
+      {notes.map((note, id) => (
+        <Note key={id} id={id + 1} text={note.text} date={note.date} />
+      ))}
+      <AddNote
+        // handleNewNoteTitle={handleNewNoteTitle}
+        handleNewNoteText={handleNewNoteText}
+      />
     </div>
   );
 };

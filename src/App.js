@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+
 import AddNote from "./components/AddNote";
 import AllNotes from "./components/AllNotes";
 import OpenEdit from "./components/OpenEdit";
 import Search from "./components/Search";
+
+import "./App.css";
 
 const App = () => {
   const [note, setNote] = useState({
@@ -23,14 +25,13 @@ const App = () => {
   const [searchText, setSearchText] = useState("");
 
   const loadNotes = () => setNotes(JSON.parse(localStorage.getItem("save")));
-  const storeNotesToDb = () =>
-    localStorage.setItem("save", JSON.stringify(notes));
+  const storeNotes = () => localStorage.setItem("save", JSON.stringify(notes));
   useEffect(loadNotes, []);
-  useEffect(storeNotesToDb, [notes]);
+  useEffect(storeNotes, [notes]);
 
-  const editNote = (noteid) => {
+  const editNote = (noteId) => {
     notes.forEach((item) => {
-      if (item.id === noteid) {
+      if (item.id === noteId) {
         setEditNoteObj({
           id: item.id,
           title: item.title,
@@ -51,14 +52,13 @@ const App = () => {
       />
       <Search handleSearchNote={setSearchText} />
       <AllNotes
-        notes={notes}
+        notes={notes.filter((note) =>
+          note.title.toLowerCase().includes(searchText)
+        )}
         setNotes={setNotes}
         showModal={showModal}
         setShowModal={setShowModal}
         editNote={editNote}
-        notes={notes.filter((note) =>
-          note.title.toLowerCase().includes(searchText)
-        )}
       />
       {showModal && (
         <OpenEdit

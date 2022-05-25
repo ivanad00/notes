@@ -3,6 +3,7 @@ import "./App.css";
 import AddNote from "./components/AddNote";
 import AllNotes from "./components/AllNotes";
 import OpenEdit from "./components/OpenEdit";
+import Search from "./components/Search";
 
 const App = () => {
   const [note, setNote] = useState({
@@ -19,6 +20,7 @@ const App = () => {
     text: "",
     favorite: false,
   });
+  const [searchText, setSearchText] = useState("");
 
   const loadNotes = () => setNotes(JSON.parse(localStorage.getItem("save")));
   const storeNotesToDb = () =>
@@ -47,12 +49,16 @@ const App = () => {
         note={note}
         setNote={setNote}
       />
+      <Search handleSearchNote={setSearchText} />
       <AllNotes
         notes={notes}
         setNotes={setNotes}
         showModal={showModal}
         setShowModal={setShowModal}
         editNote={editNote}
+        notes={notes.filter((note) =>
+          note.title.toLowerCase().includes(searchText)
+        )}
       />
       {showModal && (
         <OpenEdit

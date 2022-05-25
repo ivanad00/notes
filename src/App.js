@@ -1,10 +1,24 @@
+import { useState } from "react";
 import "./App.css";
-import Home from "./pages/Home";
+import AddNote from "./components/AddNote";
 
 const App = () => {
+  const [note, setNote] = useState({
+    title: "",
+    text: "",
+    favorite: false,
+  });
+
+  const [notes, setNotes] = useState([]);
+  
   return (
     <div>
-      <Home />
+      <AddNote
+        notes={notes}
+        setNotes={setNotes}
+        note={note}
+        setNote={setNote}
+      />
     </div>
   );
 };

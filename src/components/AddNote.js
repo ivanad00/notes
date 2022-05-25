@@ -1,41 +1,61 @@
 import React, { useState } from "react";
+import favorite from "../assets/favorite.svg";
+import favoritefull from "../assets/favorite-full.svg";
 import "../styles/note.css";
 
-const AddNote = ({ handleNewNoteText }) => {
-  const [newNoteText, setNewNoteText] = useState("");
-  // const [newNoteTitle, setNewNoteTitle] = useState("");
+const AddNote = ({ notes, setNotes, note, setNote }) => {
+  const setTitle = (event) => setNote({ ...note, title: event.target.value });
+  const setText = (event) => setNote({ ...note, text: event.target.value });
 
-  const handleTextChange = (e) => {
-    setNewNoteText(e.target.value);
-  };
-  // const handleTitleChange = (e) => {
-  //   setNewNoteTitle(e.target.value);
-  // };
-
-  const handleSave = () => {
-    // handleNewNoteTitle(newNoteTitle);
-    if (newNoteText.trim().length > 0) {
-      handleNewNoteText(newNoteText);
-      setNewNoteText("");
+  const addNoteToList = () => {
+    const date = new Date();
+    if (note.title !== "" || note.text !== "") {
+      setNotes([
+        {
+          title: note.title,
+          text: note.text,
+          favorite: note.favorite,
+          date: date.toLocaleString(),
+        },
+        ...notes,
+      ]);
+      setNote({
+        title: "",
+        text: "",
+        favorite: false,
+      });
     }
+    console.log(notes);
   };
 
   return (
-    <div className="note">
-      {/* <textarea
-        placeholder="Title"
-        rows="3"
-        className="title"
-        value={newNoteTitle}
-        onChange={handleTitleChange}
-      ></textarea> */}
+    <div className="addnote-container">
+      <div className="title-container">
+        <input
+          type="text"
+          value={note.title}
+          className="add-title"
+          onChange={setTitle}
+          placeholder="Title"
+        />
+        <button>
+          {note.favorite ? (
+            <img className="icon" src={favoritefull} alt="favorite-fill" />
+          ) : (
+            <img className="icon" src={favorite} alt="favorite" />
+          )}
+        </button>
+      </div>
       <textarea
-        placeholder="Text"
-        rows="10"
-        value={newNoteText}
-        onChange={handleTextChange}
+        value={note.text}
+        onChange={setText}
+        className="add-text"
+        placeholder="Enter a note..."
       ></textarea>
-      <button onClick={handleSave}> Save</button>
+
+      <div className="note-controls">
+        <button onClick={addNoteToList}>ADD NOTE</button>
+      </div>
     </div>
   );
 };

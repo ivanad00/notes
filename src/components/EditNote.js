@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import close from "../assets/close.svg";
 
 const EditNote = ({
@@ -11,9 +11,50 @@ const EditNote = ({
 }) => {
   const setTitle = (event) => setNote({ ...note, title: event.target.value });
   const setText = (event) => setNote({ ...note, text: event.target.value });
+  const date = new Date();
+
+  const addNoteToList = () => {
+    if (note.title !== "" || note.text !== "") {
+      setNotes(
+        notes.map((item) => {
+          if (item.id === note.id) {
+            return {
+              ...item,
+              title: note.title,
+              text: note.text,
+              favorite: note.favorite,
+              date: date.toLocaleString(),
+            };
+          } else return item;
+        })
+      );
+      setNote({
+        id: "",
+        title: "",
+        text: "",
+        favorite: false,
+      });
+    }
+    setShowModal(false);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape" && showModal) {
+      setShowModal(false);
+      addNoteToList();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  });
 
   return (
-    <div>
+    <div
+      className="addnote-container edit"
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className="addnote-container edit">
         <div className="title-container">
           <input
@@ -23,7 +64,11 @@ const EditNote = ({
             onChange={setTitle}
             placeholder="Title"
           />
-          <button>
+          <button
+            onClick={() => {
+              setShowModal(false);
+            }}
+          >
             <img src={close} alt="close" />
           </button>
         </div>
@@ -35,7 +80,7 @@ const EditNote = ({
         ></textarea>
 
         <div className="note-controls">
-          <button>EDIT NOTE</button>
+          <button onClick={addNoteToList}>EDIT NOTE</button>
         </div>
       </div>
     </div>

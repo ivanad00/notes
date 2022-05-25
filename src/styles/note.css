@@ -1,3 +1,16 @@
+.note-card {
+  height: 278px;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 25px;
+  margin-left: 25px;
+  margin-top: 20px;
+  justify-content: space-between;
+  min-width: 200px;
+}
+
 .note {
   border: 1px solid black;
   height: 250px;

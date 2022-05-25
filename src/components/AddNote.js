@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import favorite from "../assets/favorite.svg";
 import favoritefull from "../assets/favorite-full.svg";
 import "../styles/note.css";
+import { v4 as uuidv4 } from "uuid";
 
 const AddNote = ({ notes, setNotes, note, setNote }) => {
   const setTitle = (event) => setNote({ ...note, title: event.target.value });
@@ -12,6 +13,7 @@ const AddNote = ({ notes, setNotes, note, setNote }) => {
     if (note.title !== "" || note.text !== "") {
       setNotes([
         {
+          id: uuidv4(),
           title: note.title,
           text: note.text,
           favorite: note.favorite,

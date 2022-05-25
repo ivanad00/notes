@@ -16,14 +16,17 @@ const Note = ({
   editNote,
   number,
 }) => {
+  const changeFav = () => {
+    setNotes(
+      notes.map((item) =>
+        item.id === note.id ? { ...item, favorite: !item.favorite } : item
+      )
+    );
+  };
 
-    const changeFav = () => {
-        setNotes(
-          notes.map((item) =>
-            item.id === note.id ? { ...item, favorite: !item.favorite } : item
-          )
-        );
-      };
+  const removeNote = () => {
+    setNotes(notes.filter((item) => (item.id === note.id ? false : true)));
+  };
 
   return (
     <div className="note-card">
@@ -51,7 +54,7 @@ const Note = ({
         >
           <img className="icon" src={edit} alt="edit" />
         </button>
-        <button>
+        <button onClick={removeNote} className="remove">
           <img className="icon" src={remove} alt="remove" />
         </button>
       </div>

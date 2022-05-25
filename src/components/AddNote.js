@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 const AddNote = ({ notes, setNotes, note, setNote }) => {
   const setTitle = (event) => setNote({ ...note, title: event.target.value });
   const setText = (event) => setNote({ ...note, text: event.target.value });
+  const setFavOrNot = () => setNote({ ...note, favorite: !note.favorite });
 
   const addNoteToList = () => {
     const date = new Date();
@@ -40,7 +41,7 @@ const AddNote = ({ notes, setNotes, note, setNote }) => {
           onChange={setTitle}
           placeholder="Title"
         />
-        <button>
+        <button onClick={setFavOrNot}>
           {note.favorite ? (
             <img className="icon" src={favoritefull} alt="favorite-fill" />
           ) : (

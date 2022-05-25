@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Note from "./Note";
 
-const AllNotes = ({ notes, setNotes }) => {
+const AllNotes = ({ notes, setNotes, showModal, setShowModal, editNote }) => {
   const [showAll, setShowAll] = useState(true);
 
   return (
@@ -13,6 +13,9 @@ const AllNotes = ({ notes, setNotes }) => {
           note={item}
           setNotes={setNotes}
           number={number + 1}
+          showModal={showModal}
+          setShowModal={setShowModal}
+          editNote={editNote}
         />
       ))}
     </div>

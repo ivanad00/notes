@@ -3,9 +3,17 @@ import favorite from "../assets/favorite.svg";
 import favoritefull from "../assets/favorite-full.svg";
 import edit from "../assets/edit.svg";
 import remove from "../assets/delete.svg";
-import '../styles/note.css'
+import "../styles/note.css";
 
-const Note = ({ note, notes, setNotes, number }) => {
+const Note = ({
+  note,
+  notes,
+  setNotes,
+  showModal,
+  setShowModal,
+  editNote,
+  number,
+}) => {
   return (
     <div className="note-card">
       <div>
@@ -24,7 +32,12 @@ const Note = ({ note, notes, setNotes, number }) => {
         <div className="date">{note.date}</div>
       </div>
       <div className="note-buttons">
-        <button>
+        <button
+          onClick={() => {
+            setShowModal(!showModal);
+            editNote(note.id);
+          }}
+        >
           <img className="icon" src={edit} alt="edit" />
         </button>
         <button>

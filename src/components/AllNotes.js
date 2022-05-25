@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Note from "./Note";
+import '../styles/all-notes.css'
 
 const AllNotes = ({ notes, setNotes, showModal, setShowModal, editNote }) => {
   const [showAll, setShowAll] = useState(true);

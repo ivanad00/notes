@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import favorite from "../assets/favorite.svg";
 import favoritefull from "../assets/favorite-full.svg";
-import "../styles/note.css";
-import { v4 as uuidv4 } from "uuid";
+
+import "../styles/addNote.css";
 
 const AddNote = ({ notes, setNotes, note, setNote }) => {
   const setTitle = (event) => setNote({ ...note, title: event.target.value });

@@ -4,7 +4,7 @@ import Note from "./Note";
 import toggle from "../assets/toggle.png";
 import toggle2 from "../assets/toggle2.png";
 
-import "../styles/all-notes.css";
+import "../styles/allNotes.css";
 
 const AllNotes = ({ notes, setNotes, showModal, setShowModal, editNote }) => {
   const [showAll, setShowAll] = useState(true);
@@ -17,16 +17,18 @@ const AllNotes = ({ notes, setNotes, showModal, setShowModal, editNote }) => {
 
   return (
     <div className="notes-container">
-      <button className="filter-fav" onClick={handleFav}>
-        {showAll ? (
-          <img className="icon" src={toggle2} alt="off" />
-        ) : (
-          <img className="icon" src={toggle} alt="on" />
-        )}
-        Filter favorites
-      </button>
+      <div className="filter-fav">
+        <button className="filter-fav" onClick={handleFav}>
+          {showAll ? (
+            <img className="icon" src={toggle2} alt="off" />
+          ) : (
+            <img className="icon" src={toggle} alt="on" />
+          )}
+        </button>
+        <text className="filter-fav-text"> Filter favorite</text>
+      </div>
       {favNotes.length === 0 && otherNotes.length === 0 && (
-        <h4>No notes to show</h4>
+        <h4 className="no-notes">No notes to show...</h4>
       )}
       {showAll === true && (
         <div className="fav-notes-container">

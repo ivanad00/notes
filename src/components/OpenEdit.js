@@ -1,6 +1,8 @@
 import React from "react";
 import EditNote from "./EditNote";
-import '../styles/open-edit.css'
+
+import '../styles/openEdit.css';
+
 const OpenEdit = ({
   note,
   notes,

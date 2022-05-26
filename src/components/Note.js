@@ -32,7 +32,7 @@ const Note = ({
     <div className="note-card">
       <div>
         <div className="title-container">
-          <div>{number} </div>
+          <div className="paginate">{number} </div>
           <div className="title">{note.title}</div>
           <button className="fav-button" onClick={changeFav}>
             {note.favorite ? (

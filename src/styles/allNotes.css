@@ -1,0 +1,86 @@
+.all-notes-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  align-items: center;
+}
+
+button.filter-fav {
+  border: none;
+  background-color: transparent;
+}
+
+.filter-fav {
+  margin-left: 25px;
+}
+
+.fav-notes-container {
+  margin: 24px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.other-notes-container {
+  margin: 24px auto auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.no-notes {
+  font-size: x-large;
+  color: darkgrey;
+  font-weight: normal;
+  text-align-last: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .fav-notes-container {
+    margin: 24px auto 24px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .other-notes-container {
+    margin: 24px auto auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .fav-notes-container {
+    margin: 24px auto 24px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .other-notes-container {
+    margin: 24px auto auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .fav-notes-container {
+    margin: 24px auto 24px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .other-notes-container {
+    margin: 24px auto auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

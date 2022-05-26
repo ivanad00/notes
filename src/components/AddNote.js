@@ -59,7 +59,9 @@ const AddNote = ({ notes, setNotes, note, setNote }) => {
       ></textarea>
 
       <div className="note-controls">
-        <button onClick={addNoteToList}>ADD NOTE</button>
+        <button onClick={addNoteToList} data-cy="add-note">
+          ADD NOTE
+        </button>
       </div>
     </div>
   );

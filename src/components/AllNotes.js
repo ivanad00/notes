@@ -18,7 +18,11 @@ const AllNotes = ({ notes, setNotes, showModal, setShowModal, editNote }) => {
   return (
     <div className="notes-container">
       <div className="filter-fav">
-        <button className="filter-fav" onClick={handleFav}>
+        <button
+          className="filter-fav"
+          onClick={handleFav}
+          data-cy="favoriteButton"
+        >
           {showAll ? (
             <img className="icon" src={toggle2} alt="off" />
           ) : (
@@ -49,7 +53,7 @@ const AllNotes = ({ notes, setNotes, showModal, setShowModal, editNote }) => {
 
       {showAll === false && favNotes.length >= 1 && (
         <div className="fav-notes">
-          <h5>FAVORITE</h5>
+          <h4>FAVORITE</h4>
           <div className="fav-notes-container">
             {favNotes.map((item) => (
               <Note
@@ -68,7 +72,7 @@ const AllNotes = ({ notes, setNotes, showModal, setShowModal, editNote }) => {
 
       {showAll === false && favNotes.length > 0 && otherNotes.length >= 1 && (
         <div className="other-notes">
-          <h5>OTHER</h5>
+          <h4>OTHER</h4>
           <div className="other-notes-container">
             {otherNotes.map((item) => (
               <Note

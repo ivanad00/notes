@@ -15,6 +15,7 @@
   border: none;
   outline: none;
   border-bottom: ridge;
+  border-radius: 6px;
 }
 
 button.search-icons {
@@ -25,6 +26,6 @@ button.search-icons {
 
 .filter-fav-text {
   font-size: 14px;
-  color: #675c5c;
+  color: black;
   vertical-align: super;
 }

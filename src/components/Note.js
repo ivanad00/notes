@@ -1,5 +1,4 @@
 import React from "react";
-
 import favorite from "../assets/favorite.svg";
 import favoritefull from "../assets/favorite-full.svg";
 import edit from "../assets/edit.svg";

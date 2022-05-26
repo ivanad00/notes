@@ -14,10 +14,11 @@ button.filter-fav {
 
 .filter-fav {
   margin-left: 25px;
+  margin-bottom: 20px;
+  color: #000000;
 }
 
 .fav-notes-container {
-  margin: 24px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -35,6 +36,13 @@ button.filter-fav {
   color: darkgrey;
   font-weight: normal;
   text-align-last: center;
+}
+
+h4 {
+  color: #484343;
+  font-weight: 100;
+  text-transform: uppercase;
+  margin: 30px;
 }
 
 @media screen and (max-width: 1024px) {

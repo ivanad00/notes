@@ -4,6 +4,7 @@ import AddNote from "./components/AddNote";
 import AllNotes from "./components/AllNotes";
 import OpenEdit from "./components/OpenEdit";
 import Search from "./components/Search";
+import Header from "./components/Header";
 
 import "./App.css";
 
@@ -23,6 +24,7 @@ const App = () => {
     favorite: false,
   });
   const [searchText, setSearchText] = useState("");
+  const [color, setColor] = useState(false);
 
   const loadNotes = () => setNotes(JSON.parse(localStorage.getItem("save")));
   const storeNotes = () => localStorage.setItem("save", JSON.stringify(notes));
@@ -43,7 +45,8 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className={`${color && "color"}`}>
+      <Header handleColorChange={setColor} />
       <AddNote
         notes={notes}
         setNotes={setNotes}
@@ -59,6 +62,7 @@ const App = () => {
         showModal={showModal}
         setShowModal={setShowModal}
         editNote={editNote}
+
       />
       {showModal && (
         <OpenEdit

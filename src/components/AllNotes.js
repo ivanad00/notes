@@ -25,7 +25,7 @@ const AllNotes = ({ notes, setNotes, showModal, setShowModal, editNote }) => {
             <img className="icon" src={toggle} alt="on" />
           )}
         </button>
-        <text className="filter-fav-text"> Filter favorite</text>
+        <span className="filter-fav-text"> Filter favorite</span>
       </div>
       {favNotes.length === 0 && otherNotes.length === 0 && (
         <h4 className="no-notes">No notes to show...</h4>

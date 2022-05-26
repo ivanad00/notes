@@ -23,7 +23,7 @@ button.search-icons {
   cursor: pointer;
 }
 
-text.filter-fav-text {
+.filter-fav-text {
   font-size: 14px;
   color: #675c5c;
   vertical-align: super;

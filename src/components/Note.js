@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import favorite from "../assets/favorite.svg";
 import favoritefull from "../assets/favorite-full.svg";
 import edit from "../assets/edit.svg";
 import remove from "../assets/delete.svg";
+import download from "../assets/download.svg";
+
+import html2canvas from "html2canvas";
+
+import { jsPDF } from "jspdf";
 
 import "../styles/note.css";
 
@@ -27,8 +32,23 @@ const Note = ({
     setNotes(notes.filter((item) => (item.id === note.id ? false : true)));
   };
 
+  const printNote = useRef();
+  const handleDownloadPdf = async () => {
+    const element = printNote.current;
+    const canvas = await html2canvas(element);
+    const data = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF();
+    const imgProperties = pdf.getImageProperties(data);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
+
+    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("note.pdf");
+  };
+
   return (
-    <div className="note-card">
+    <div className="note-card" ref={printNote}>
       <div>
         <div className="title-container">
           <div className="paginate">{number} </div>
@@ -55,6 +75,13 @@ const Note = ({
         </button>
         <button onClick={removeNote} className="remove">
           <img className="icon" src={remove} alt="remove" />
+        </button>
+        <button
+          type="button"
+          onClick={handleDownloadPdf}
+          className="download-all"
+        >
+          <img src={download} alt="download" className="img-download" />
         </button>
       </div>
     </div>

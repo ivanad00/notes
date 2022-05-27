@@ -12,12 +12,22 @@ button.filter-fav {
   background-color: transparent;
 }
 
-.filter-fav {
+.icons{
   margin-left: 25px;
   margin-bottom: 20px;
   color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 30px;
 }
 
+.filter-fav-text {
+  font-size: 14px;
+  color: black;
+  vertical-align: super;
+  margin-left: 41px;
+}
 .fav-notes-container {
   display: flex;
   flex-direction: row;
@@ -43,6 +53,17 @@ h4 {
   font-weight: 100;
   text-transform: uppercase;
   margin: 30px;
+}
+
+.download-all {
+  border: none;
+  outline: none;
+  background-color: inherit;
+}
+
+.img-download {
+  height: 30px;
+  width: 30px;
 }
 
 @media screen and (max-width: 1024px) {

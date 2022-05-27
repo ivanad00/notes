@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Note from "./Note";
-
 import toggle from "../assets/toggle.png";
 import toggle2 from "../assets/toggle2.png";
+import download from "../assets/download.svg";
+import html2canvas from "html2canvas";
+
+import { jsPDF } from "jspdf";
 
 import "../styles/allNotes.css";
 
@@ -15,9 +18,25 @@ const AllNotes = ({ notes, setNotes, showModal, setShowModal, editNote }) => {
     setShowAll(!showAll);
   };
 
+  const printAllNotes = useRef();
+  const handleDownloadPdf = async () => {
+    const element = printAllNotes.current;
+    const canvas = await html2canvas(element);
+    const data = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF();
+    const imgProperties = pdf.getImageProperties(data);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
+
+    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("all notes.pdf");
+  };
+
   return (
     <div className="notes-container">
-      <div className="filter-fav">
+      <span className="filter-fav-text"> Filter favorite</span>
+      <div className="icons">
         <button
           className="filter-fav"
           onClick={handleFav}
@@ -29,26 +48,36 @@ const AllNotes = ({ notes, setNotes, showModal, setShowModal, editNote }) => {
             <img className="icon" src={toggle} alt="on" />
           )}
         </button>
-        <span className="filter-fav-text"> Filter favorite</span>
+        <button
+          type="button"
+          onClick={handleDownloadPdf}
+          className="download-all"
+        >
+          <img src={download} alt="download" className="img-download" />
+        </button>
       </div>
+
       {favNotes.length === 0 && otherNotes.length === 0 && (
         <h4 className="no-notes">No notes to show...</h4>
       )}
+
       {showAll === true && (
-        <div className="fav-notes-container">
-          {notes.map((item, number) => (
-            <Note
-              key={item.id}
-              notes={notes}
-              note={item}
-              setNotes={setNotes}
-              showModal={showModal}
-              setShowModal={setShowModal}
-              editNote={editNote}
-              number={number + 1}
-            />
-          ))}
-        </div>
+        <>
+          <div className="fav-notes-container" ref={printAllNotes}>
+            {notes.map((item, number) => (
+              <Note
+                key={item.id}
+                notes={notes}
+                note={item}
+                setNotes={setNotes}
+                showModal={showModal}
+                setShowModal={setShowModal}
+                editNote={editNote}
+                number={number + 1}
+              />
+            ))}
+          </div>
+        </>
       )}
 
       {showAll === false && favNotes.length >= 1 && (

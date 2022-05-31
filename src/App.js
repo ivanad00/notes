@@ -6,8 +6,6 @@ import OpenEdit from "./components/OpenEdit";
 import Search from "./components/Search";
 import Header from "./components/Header";
 
-import "./App.css";
-
 const App = () => {
   const [note, setNote] = useState({
     title: "",
@@ -27,7 +25,15 @@ const App = () => {
   const [color, setColor] = useState(false);
 
   const loadNotes = () => setNotes(JSON.parse(localStorage.getItem("save")));
-  const storeNotes = () => localStorage.setItem("save", JSON.stringify(notes));
+  const storeNotes = () => {
+    if (
+      !localStorage.getItem("save") ||
+      JSON.parse(localStorage.getItem("save")).length === 0
+    ) {
+      localStorage.setItem("save", JSON.stringify(notes));
+    }
+  };
+
   useEffect(loadNotes, []);
   useEffect(storeNotes, [notes]);
 
@@ -62,7 +68,6 @@ const App = () => {
         showModal={showModal}
         setShowModal={setShowModal}
         editNote={editNote}
-
       />
       {showModal && (
         <OpenEdit

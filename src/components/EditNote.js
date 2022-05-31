@@ -75,7 +75,7 @@ const EditNote = ({
         <textarea
           value={note.text}
           onChange={setText}
-          className="addtext"
+          className="add-text"
           placeholder="Enter a note..."
         ></textarea>
 
